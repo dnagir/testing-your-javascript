@@ -45,7 +45,7 @@
   <div id="header">
   </div>
   <div id="footer">
-    <h1>RORO Melbourne / 29 July 2011</h1>
+    <h1>RORO Melbourne / 28 July 2011</h1>
     <h2>Testing your JavaScript</h2>
   </div>
 </div>
@@ -110,12 +110,12 @@
 
   <div class="slide">
     <h1>Make it all work</h1>
-    <p>Main issue - too general assumption about interactions. Too much abstraction.</p>
+    <p>Main issue - too general assumptions were made about interactions.</p>
     <ul>
-      <li>All forms are validated the same way and always submitted via AJAX.</li>
-      <li>All forms are submitted even though only 1 should.</li>
+      <li>All forms are validated the same way and submitted via AJAX.</li>
+      <li>All forms are on a page are submitted even though only 1 should.</li>
       <li><em>Infinite scrolling</em> fetches unrelated resources, always.</li>
-      <li>Any changes broke the world.</li>
+      <li>Any changes break the world.</li>
     </ul>
   </div>
 
@@ -202,8 +202,8 @@ $('.content').trigger('on-bottom');
     <h3>Let's just move on... Lessons learned:</h3>
     <ul>
       <li>Front-End developer <em>MUST</em> be a part of the Team. All the fucking time!</li>
-      <li>Don't ask to implement too much of the interaction.</li>
-      <li>Ask to split functionality into small modules/files.</li>
+      <li>Don't ask to implement too much interaction.</li>
+      <li>Ask to split functionality into smaller modules/files (and maybe use a framework).</li>
       <li>Integrate the developed front-end into the app as it progresses - better feedback.</li>
       <li>Stop supporting old browsers. Don't fall back to <code>noscript</code> (Even G+ doesn't!) 
         <sup><em>[Warning - holly-war]</em></sup> 
@@ -227,6 +227,7 @@ $('.content').trigger('on-bottom');
       <li>Worked great initially.</li>
       <li>Conflicting RSpec matchers with webrat.</li>
       <li>Too hard to test JavaScript reach functionality.</li>
+      <li>Felt like using Ruby to drive specs by injecting JavaScript pieces everywhere.</li>
     </ul>
     <p>
       As a result, disabled Capybara and had to do proper JavaScript testing.
@@ -244,7 +245,7 @@ $('.content').trigger('on-bottom');
         After <a href="http://forum.javascriptmvc.com/#Topic/32525000000538060">asking on forums</a> decided it's not the best fit.
       </li>
       <li>
-        Selenium (1 and 2) and JsTestDriver - You need to run real browsers. A bit more hassle the I wanted.
+        Selenium (1 and 2) and JsTestDriver - You need to run real browsers. A bit more hassle than I wanted.
       </li>
       <li>
         <a href="http://pivotal.github.com/jasmine/">Jasmine</a> - very RSpec and Ruby-like.
@@ -263,7 +264,7 @@ $('.content').trigger('on-bottom');
     <ul>
       <li>
         <a href="http://jashkenas.github.com/coffee-script/">CoffeeScript</a> - JavaScript with no 
-        <code>function, function, function</code> 
+        <code>function, function, function</code>. 
       </li>
       <li>
         <a href="https://github.com/velesin/jasmine-jquery">jasmine-jquery</a> - jQuery matchers for Jasmine and <strong>FIXTURES</strong> support.
@@ -298,15 +299,19 @@ $('.content').trigger('on-bottom');
 
   <div class="slide">
     <h1>Setting everything up</h1>
-    <p>Assuming you already have a Rails 3.1 (from <strong>3-1-stable</strong> branch ATM). You need to:</p>
+    <p>
+      <strong>WARNING:</strong>
+      <em>Your millage WILL vary. Working with beta.</em>
+      <br />
+      Assuming we are on existing Rails 3.1 (from <strong>3-1-stable</strong> branch ATM) app. You need to:
+    </p>
     <ul>
       <li>Update Gemfile</li>
       <li>Setup Guard</li>
       <li>Setup Jasmine</li>
       <li>Setup Jasmine: JavaScript tools</li>
       <li>Setup Jasmine: configure file locations</li>
-    </ul>    
-    <h3>WARNING: Your millage WILL vary. A lot of stuff is in beta or used from source.</h3>
+    </ul>        
   </div>  
 
 
@@ -351,8 +356,12 @@ end
 
   <div class="slide">
     <h1>Setup Jasmine</h1>
-    <code>bundle exec jasmine init</code> - you are set-up and shold be able to run sample specs
-    <code>bundle exec rake jasmine:ci</code>.
+    <code>bundle exec jasmine init</code>
+    <p>
+      You are set-up and shold be able to run sample specs
+      <br />
+      <code>bundle exec rake jasmine:ci</code>
+    </p>
   </div>
 
   <div class="slide">
@@ -370,7 +379,7 @@ end
   <div class="slide">
     <h1>Setup Jasmine: configure file locations</h1>
     <code>vim spec/javascripts/support/jasmine.yml</code>
-    <p>Use wildcard as Rails 3.1 assets include cache buster.</p>
+    <p>Use wildcard as file names of assets include cache buster.</p>
     <pre><code>
 src_files:
   - public/assets/first-priority-files-*.js
@@ -389,7 +398,7 @@ spec_files:
   
   <div class="slide">
     <h1>Done! Use it!</h1>
-    Run <code>bundle exec guard</code>, move the reminal away and start coding.
+    Run <code>bundle exec guard</code>, move the terminal away and start coding.
     <img alt="spec runner example" src="assets/guard-headless-specs.png" />
   </div>
   
@@ -533,10 +542,11 @@ respond mostRecentAjaxRequest()
   <div class="slide">
     <h1>Notes</h1>
     <ul>
-      <li>CoffeeScript <strong>MUST</strong> have parentesis to call function with NO args. Hurts if you miss this out.</li>
+      <li>CoffeeScript <strong>MUST</strong> have parentheses to call a function with NO args. Hurts if you miss this out.</li>
       <li>If you need to debug - just run jasmine as normally and do it in the browser.</li>
-      <li>Watch out for indentation <sub>[Python is here]</sub></li>
+      <li>Watch out for indentation <sup>[Python is here]</sup></li>
       <li>Watch out for <code>func: -&gt;</code> vs <code>func = -&gt;</code>.</li>
+      <li>Do not use CoffeeScript <code>class</code>-es - more issues with <code>this</code>. Bold arrow <code>func: =&gt;</code> isn't always helpful.</li>
       <li>CoffeeScript compiles to JavaScript. Very easy to understand... if you know what JS is.</li>
       <li>CoffeeScript functions <strong>ALWAYS</strong> return a value.</li>
     </ul>
@@ -546,10 +556,11 @@ respond mostRecentAjaxRequest()
     <h1>Existing problems</h1>
     <ul>
       <li>Compiling Rails assets is very slow. 
-        Please contribute to <a href="https://github.com/guard/guard-rails-assets">guard-rails-assets</a> (spork?)
+        Please contribute to <a href="https://github.com/guard/guard-rails-assets">guard-rails-assets</a> (spork?).
       </li>
       <li>All tests are still on a single page. Make sure you use <code>setFuxtures</code> and/or clean up properly.</li>
-      <li>Compiled specs are in source control. Need guard running to autocompile CoffeeScript specs.</li>
+      <li>Compiled specs are in source control.</li>
+      <li>Guard should run to autocompile CoffeeScript specs.</li>
     </ul>
   </div>
 
@@ -560,7 +571,7 @@ respond mostRecentAjaxRequest()
       <li>Understand the CoffeeScript.</li>
       <li>Understand the Jasmine's matchers, spies etc.</li>
       <li>Structure files properly.</li>      
-      <li>Keep balance between <em>too much testing</em> and <em>no tests at all</em></li>
+      <li>Keep balance between <em>too much testing</em> and <em>no tests at all</em>.</li>
       <li>Keep balance between speed and quality (well, as usual).</li>
     </ul>
   </div>
@@ -570,11 +581,19 @@ respond mostRecentAjaxRequest()
     <h1>Summary</h1>
     <ul>
       <li>Got confidence in the project.</li>
-      <li>Spent significantly more time thought.</li>
-      <li>Still finding my way of testing it.</li>
+      <li>Enabled fast feedback and BDD-style of development.</li>
+      <li>Spent significantly more time though.</li>
+      <li>Still finding my way of testing things.</li>
     </ul>
   </div>
 
+  <div class="slide">
+    <h1>Recommendation</h1>
+    <a href="http://tddjs.com/" class="lefty">
+      <img alt="Cover of TDDJS book" src="assets/ttdjs.png" />
+    </a>    
+    This one single book will give you great start understanding JavaScript as a language and wasy to testing.
+  </div>
 
   <div class="slide">
     <h1>Thanks</h1>
