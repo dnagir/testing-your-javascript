@@ -169,10 +169,10 @@ try {
   var data = $.parseJSON(dataR);
 } catch (e) {
   try {
-    dataR = dataR.replace(/<\/?pre[^>]*>/igm,"");
+    dataR = dataR.replace(/&lt;\/?pre[^&gt;]*&gt;/igm,&quot;&quot;);
     data = $.parseJSON(dataR);
   } catch (ex) {
-    $(form).trigger("server-error",[jqXHR, textStatus, ex]);
+    $(form).trigger(&quot;server-error&quot;,[jqXHR, textStatus, ex]);
   }
 }
     </code></pre>
@@ -243,6 +243,7 @@ $('.content').trigger('on-bottom');
         But I wanted to maintain RSpec-like test structure. 
         After <a href="http://forum.javascriptmvc.com/#Topic/32525000000538060">asking on forums</a> decided it's not the best fit.
       </li>
+      <li>
         Selenium (1 and 2) and JsTestDriver - You need to run real browsers. A bit more hassle the I wanted.
       </li>
       <li>
@@ -271,6 +272,7 @@ $('.content').trigger('on-bottom');
         <a href="https://github.com/pivotal/jasmine-ajax">jasmine-ajax</a> - drop-in stubbing for XMLHttpRequest. 
         All AJAX requests are stubbed y default. So you can't load FIXTURES from html files.
       </li>
+    </ul>
   </div>
   
   <div class="slide">
@@ -290,12 +292,13 @@ $('.content').trigger('on-bottom');
         <a href="https://github.com/johnbintz/guard-jasmine-headless-webkit">guard-jasmine-headless-webkit</a> 
         - automatically run JavaScript specs when something changes (~autotest).
       </li>
+    </ul>
   </div>
 
 
   <div class="slide">
     <h1>Setting everything up</h1>
-    <p>Assuming you already have a Rails 3.1 (from <strong>3-1-stable</strong> branch ATM). You need to:<p>
+    <p>Assuming you already have a Rails 3.1 (from <strong>3-1-stable</strong> branch ATM). You need to:</p>
     <ul>
       <li>Update Gemfile</li>
       <li>Setup Guard</li>
@@ -332,16 +335,16 @@ end
     <code>bundle exec guard init</code>
     <pre><code class='ruby'>
 # Guardfile
-guard 'rails-assets' do
+guard &#39;rails-assets&#39; do
   watch %r{^app/assets/.+$}
-  watch 'config/application.rb'
+  watch &#39;config/application.rb&#39;
 end
-guard 'coffeescript', :output => 'spec/javascripts/compiled', :hide_success => true do
+guard &#39;coffeescript&#39;, :output =&gt; &#39;spec/javascripts/compiled&#39;, :hide_success =&gt; true do
   watch %r{^spec/javascripts/(.+\.coffee)$}
 end
-guard 'jasmine-headless-webkit' do
+guard &#39;jasmine-headless-webkit&#39; do
   watch %r{^public/assets/application-(.*)\.js}
-  watch(%r{^spec/javascripts/compiled/(.*)_spec\..*}) { |m| newest_js_file("spec/javascripts/compiled/#{m[1]}_spec") }
+  watch(%r{^spec/javascripts/compiled/(.*)_spec\..*}) { |m| newest_js_file(&quot;spec/javascripts/compiled/#{m[1]}_spec&quot;) }
 end
     </code></pre>
   </div>  
@@ -367,7 +370,7 @@ end
   <div class="slide">
     <h1>Setup Jasmine: configure file locations</h1>
     <code>vim spec/javascripts/support/jasmine.yml</code>
-    <p>Use wildcard as Rails 3.1 assets include cache buster.
+    <p>Use wildcard as Rails 3.1 assets include cache buster.</p>
     <pre><code>
 src_files:
   - public/assets/first-priority-files-*.js
@@ -454,7 +457,7 @@ describe &#39;comment deletion&#39;, -&gt;
 
 
   <div class="slide">
-    <h1>Example - Inline <strike>Fixtures</strike> Factories</h1>
+    <h1>Example - Inline <del>Fixtures</del> Factories</h1>
     <pre><code class='coffee'>
 describe &#39;Imgae Info commenting&#39;, -&gt;
   beforeEach -&gt; App.images.commenter.init()
@@ -533,7 +536,7 @@ respond mostRecentAjaxRequest()
       <li>CoffeeScript <strong>MUST</strong> have parentesis to call function with NO args. Hurts if you miss this out.</li>
       <li>If you need to debug - just run jasmine as normally and do it in the browser.</li>
       <li>Watch out for indentation <sub>[Python is here]</sub></li>
-      <li> Watch out for <code>func: -&gt;</code> vs <code>func = -&gt;</code>.
+      <li>Watch out for <code>func: -&gt;</code> vs <code>func = -&gt;</code>.</li>
       <li>CoffeeScript compiles to JavaScript. Very easy to understand... if you know what JS is.</li>
       <li>CoffeeScript functions <strong>ALWAYS</strong> return a value.</li>
     </ul>
