@@ -1,0 +1,591 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>Testing your JavaScript</title>
+  <!-- metadata -->
+  <meta name="generator" content="S5" />
+  <meta name="version" content="S5 1.1" />
+  <meta name="presdate" content="20110729" />
+  <meta name="author" content="Dmytrii Nagirniak" />
+  <meta name="company" content="Approach Excelllence" />
+  <!-- configuration parameters -->
+  <meta name="defaultView" content="slideshow" />
+  <meta name="controlVis" content="hidden" />
+  <!-- style sheet links -->
+  <link rel="stylesheet" href="ui/default/slides.css" type="text/css" media="projection" id="slideProj" />
+  <link rel="stylesheet" href="ui/default/outline.css" type="text/css" media="screen" id="outlineStyle" />
+  <link rel="stylesheet" href="ui/default/print.css" type="text/css" media="print" id="slidePrint" />
+  <link rel="stylesheet" href="ui/default/opera.css" type="text/css" media="projection" id="operaFix" />
+
+  <link rel="stylesheet" href="assets/preso.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="assets/highlightjs/styles/github.css" type="text/css" media="all" />
+
+  <!-- S5 JS -->
+  <script src="ui/default/slides.js" type="text/javascript"></script>
+
+
+  <script src="assets/highlightjs/highlight.js" type="text/javascript"></script>
+  <script src="assets/highlightjs/languages/coffee.js" type="text/javascript"></script>
+  <script src="assets/highlightjs/languages/javascript.js" type="text/javascript"></script>
+  <script src="assets/highlightjs/languages/bash.js" type="text/javascript"></script>
+
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
+
+</head>
+<body>
+
+<div class="layout">
+  <div id="controls"><!-- DO NOT EDIT --></div>
+  <div id="currentSlide"><!-- DO NOT EDIT --></div>
+  <div id="header">
+  </div>
+  <div id="footer">
+    <h1>RORO Melbourne / 29 July 2011</h1>
+    <h2>Testing your JavaScript</h2>
+  </div>
+</div>
+
+
+<div class="presentation">
+  <div class="slide">
+    <h1>Testing your JavaScript</h1>
+    <h2>Just sharing my experience</h2>
+    <h3>Dmytrii Nagirniak (~ Dima)</h3>
+    <h4>Believer that Software Development is an <a href="http:/www.ApproachE.com">art</a>.</h4>
+  </div>
+  
+  <div class="slide">
+    <h1>Dmytrii Nagirniak - Who am I?</h1>
+    <img src="assets/me.jpg" alt="Photo of Dmytrii Nagirniak" class="lefty" />
+    <p>
+      Doing .NET (sorry to upset you) for living and Ruby for love and fun.
+    </p>
+    <ul class="clear">
+      <li>Life wasn't challenging enough, so in 2010 jumped into Linux and Ruby.</li>
+      <li>Winner of <a href="http://rubylearning.com/blog/2010/04/06/dmitiry-nagirnyak-winner-rpcfn-7/">RubyLearning challenge #7</a>.</li>
+      <li>Currently Tech. Lead at <a href="http://www.propconnect.com">PropConnect</a> (Real Estate)</li>
+    </ul>
+  </div>
+  
+  <div class="slide">
+    <h1>My recent public work</h1>
+    <ul>
+      <li> <a href="https://github.com/dnagir/NFactory">NFactory</a> - FactoryGirl for .NET.</li>
+      <li> <a href="http://connecty.approache.com/">Connecty</a> - Simple and free user Feedback (clone of UserVoice and similar).</li>
+      <li> <a href="https://github.com/dnagir/guard-rails-assets">guard-rails-assets</a> gem - automatically compile Rails 3.1 assets.</li>
+      <li> <a href="https://github.com/dnagir/highlightjs-coffeescript">CoffeeScript syntax highlighting</a> with highlight.js.</li>      
+    </ul>
+  </div>
+  
+  <div class="slide">
+    <h1>Me on the web</h1>
+    <ul>
+      <li>Tweeting <a href="http://twitter.com/dnagir">@dnagir</a></li>
+      <li>Blogging at <a href="http://blog.ApproachE.com">blog.ApproachE.com</a></li>
+      <li>Git-ing at <a href="http://github.com/dnagir">github.com/dnagir</a></li>
+      <li>LinkedIn-ed at <a href="http://au.linkedin.com/in/dmitriynagirnyak">au.linkedin.com/in/dmitriynagirnyak</a> </li>
+      <li>Also <a href="http://stackoverflow.com/users/148473/dmytrii-nagirniak">StackOverflow-ing</a></li>
+      <li>The rest at <a href="http://www.ApproachE.com">ApproachE.com</a></li>
+    </ul>
+  </div>
+
+
+  <div class="slide">
+    <h1>Where it all started</h1>    
+    <p>
+      A free time, side project with the usability as first priority. Design First Development.
+    </p>
+    <ul>
+      <li>Great design was produced.</li>
+      <li>Outsorced front-end development.</li>
+      <li>Great looking result.</li>
+    </ul>
+  </div>
+
+
+  <div class="slide">
+    <h1>Make it all work</h1>
+    <p>Main issue - too general assumption about interactions. Too much abstraction.</p>
+    <ul>
+      <li>All forms are validated the same way and always submitted via AJAX.</li>
+      <li>All forms are submitted even though only 1 should.</li>
+      <li><em>Infinite scrolling</em> fetches unrelated resources, always.</li>
+      <li>Any changes broke the world.</li>
+    </ul>
+  </div>
+
+  
+  <div class="slide">
+    <h1>Technical issues - single file > 1000 LOC</h1>
+    <p>Incredibly hard to maintain - all the front-end logic in a <strong>single</strong> file.</p>
+    <pre><code class="javascript">
+SBX.common.overlays();
+SBX.common.scrolledToBottom();
+SBX.common.toggleButtons();
+SBX.common.ajax.loading();
+SBX.common.ajax.problem();
+SBX.common.placeholders();
+SBX.common.searchFocus();
+SBX.common.notifications();
+SBX.common.validation();
+SBX.images.showHideInfo("Show","Hide");
+SBX.images.optionsTabs();
+SBX.images.navigation();
+SBX.images.nextImage();
+SBX.images.commentsScrolling();
+SBX.images.gearEdit();
+SBX.images.titleEdit();
+SBX.images.tagEdit();
+SBX.images.fixIE();
+SBX.images.likeButton();
+SBX.users.moreUsers();
+SBX.users.moreHappenings();
+SBX.profile.tooltips();
+SBX.profile.gearAutocomplete();
+SBX.profile.removeGear();
+SBX.upgrade.tooltips();
+SBX.upload.createUploader();
+SBX.upload.progressBar();
+SBX.upload.sortImages();
+SBX.settings.colorpickers();
+SBX.settings.inPlaceEdit();
+SBX.settings.imagePreview();
+SBX.settings.liveColorEdit();
+    </code></pre>
+  </div>
+
+  <div class="slide">
+    <h1>Technical issues - unknown behaviour</h1>
+    <p>Often it was hard to understand <em>WHY</em> and <em>WHERE</em> particular thing works.
+      <br />
+      Example: Scrolling to bottom triggers 3 request to load totally unrelated resources.</p>
+    <pre><code class='javascript'>
+try {
+  var data = $.parseJSON(dataR);
+} catch (e) {
+  try {
+    dataR = dataR.replace(/<\/?pre[^>]*>/igm,"");
+    data = $.parseJSON(dataR);
+  } catch (ex) {
+    $(form).trigger("server-error",[jqXHR, textStatus, ex]);
+  }
+}
+    </code></pre>
+  </div>
+  
+  
+  <div class="slide">
+    <h1>Technical issues - unconditional initialisation</h1>
+    <pre><code class='javascript'>
+var moreUsers = function (){
+  $('.content').bind('on-bottom',function(){ /*...*/ })
+},
+
+var moreHappenings = function (){
+  $('.content').bind('on-bottom',function(){ /*...*/ })
+}
+/* etc */
+// All handlers are executed as expected.
+// But the interaction is NOT expected.
+$('.content').trigger('on-bottom');
+    </code></pre>
+  </div>
+
+
+  <div class="slide">
+    <h1>Would we outsource again: ~ ehh, Yeah</h1>
+    <h3>Let's just move on... Lessons learned:</h3>
+    <ul>
+      <li>Front-End developer <em>MUST</em> be a part of the Team. All the fucking time!</li>
+      <li>Don't ask to implement too much of the interaction.</li>
+      <li>Ask to split functionality into small modules/files.</li>
+      <li>Integrate the developed front-end into the app as it progresses - better feedback.</li>
+      <li>Stop supporting old browsers. Don't fall back to <code>noscript</code> (Even G+ doesn't!) 
+        <sup><em>[Warning - holly-war]</em></sup> 
+      </li>
+      <li>Decide what you do: rich application or HTML web site. Both might be too time consuming.</li>
+    </ul>    
+  </div>
+  
+  <div class="slide">
+    <h1>How to fix?</h1>
+    <ul>
+      <li>Integration tests (Capybara >= 1.0).</li>
+      <li>JavaScript unit testing.</li>
+      <li>Incremental updates.</li>
+    </ul>
+  </div>
+  
+  <div class="slide">
+    <h1>A word on Capybara</h1>
+    <ul>
+      <li>Worked great initially.</li>
+      <li>Conflicting RSpec matchers with webrat.</li>
+      <li>Too hard to test JavaScript reach functionality.</li>
+    </ul>
+    <p>
+      As a result, disabled Capybara and had to do proper JavaScript testing.
+    </p>
+  </div>
+  
+  
+  <div class="slide">
+    <h1>Considered JS Unit Testing options</h1>
+    <ul>
+      <li>
+        <a href="http://javascriptmvc.com/">JavaScriptMVC</a> - very Rails-like, jQuery oriented.
+        Includes complete toolset (packaging, dependency management, testing).
+        But I wanted to maintain RSpec-like test structure. 
+        After <a href="http://forum.javascriptmvc.com/#Topic/32525000000538060">asking on forums</a> decided it's not the best fit.
+      </li>
+        Selenium (1 and 2) and JsTestDriver - You need to run real browsers. A bit more hassle the I wanted.
+      </li>
+      <li>
+        <a href="http://pivotal.github.com/jasmine/">Jasmine</a> - very RSpec and Ruby-like.
+        All tests are on a single page.
+        You need to run browser (even with CI option).
+      </li>
+      <li>
+        <a href="http://pivotal.github.com/jasmine/">Jasmine</a> on steroids was the way out.
+      </li>
+    </ul>
+  </div>
+  
+  <div class="slide">
+    <h1>Tools that go with Jasmine: JavaScript</h1>
+    <p>This basic additions changed the experience and feeling of testing in JavaScript</p>
+    <ul>
+      <li>
+        <a href="http://jashkenas.github.com/coffee-script/">CoffeeScript</a> - JavaScript with no 
+        <code>function, function, function</code> 
+      </li>
+      <li>
+        <a href="https://github.com/velesin/jasmine-jquery">jasmine-jquery</a> - jQuery matchers for Jasmine and <strong>FIXTURES</strong> support.
+      </li>      
+      <li>
+        <a href="https://github.com/pivotal/jasmine-ajax">jasmine-ajax</a> - drop-in stubbing for XMLHttpRequest. 
+        All AJAX requests are stubbed y default. So you can't load FIXTURES from html files.
+      </li>
+  </div>
+  
+  <div class="slide">
+    <h1>Tools that go with Jasmine: Ruby Gems</h1>
+    <ul>
+      <li>
+        <a href="http://johnbintz.github.com/jasmine-headless-webkit/">jasmine-headless-webkit</a>
+        - run JS specs in a webkit browser but without running a browsers (cut the stupid head off).
+      </li>
+      <li>
+        <a href="https://github.com/guard/guard">guard</a> - run tasks when something changes.
+      </li>
+      <li>
+        <a href="">guard-rails-assets</a> - automatically compile Rails 3.1 assets.
+      </li>
+      <li>
+        <a href="https://github.com/johnbintz/guard-jasmine-headless-webkit">guard-jasmine-headless-webkit</a> 
+        - automatically run JavaScript specs when something changes (~autotest).
+      </li>
+  </div>
+
+
+  <div class="slide">
+    <h1>Setting everything up</h1>
+    <p>Assuming you already have a Rails 3.1 (from <strong>3-1-stable</strong> branch ATM). You need to:<p>
+    <ul>
+      <li>Update Gemfile</li>
+      <li>Setup Guard</li>
+      <li>Setup Jasmine</li>
+      <li>Setup Jasmine: JavaScript tools</li>
+      <li>Setup Jasmine: configure file locations</li>
+    </ul>    
+    <h3>WARNING: Your millage WILL vary. A lot of stuff is in beta or used from source.</h3>
+  </div>  
+
+
+  <div class="slide">
+    <h1>Update Gemfile</h1>
+    <pre><code class='ruby'>
+# Gemfile - only shortlist - add yours of course, including execjs
+group :development, :test do
+  gem 'jasmine'
+end
+group :test do
+  gem 'guard-coffeescript'
+  gem 'guard-rails-assets'
+  gem 'guard-jasmine-headless-webkit'
+  gem 'jasmine-headless-webkit', :git => 'https://github.com/johnbintz/jasmine-headless-webkit.git' # https://github.com/johnbintz/jasmine-headless-webkit/issues/10#issuecomment-1348568
+end    
+    </code></pre>    
+    <pre><code class='bash'>
+> bundle
+    </code></pre>
+  </div>
+
+
+  <div class="slide">
+    <h1>Setup Guard</h1>
+    <code>bundle exec guard init</code>
+    <pre><code class='ruby'>
+# Guardfile
+guard 'rails-assets' do
+  watch %r{^app/assets/.+$}
+  watch 'config/application.rb'
+end
+guard 'coffeescript', :output => 'spec/javascripts/compiled', :hide_success => true do
+  watch %r{^spec/javascripts/(.+\.coffee)$}
+end
+guard 'jasmine-headless-webkit' do
+  watch %r{^public/assets/application-(.*)\.js}
+  watch(%r{^spec/javascripts/compiled/(.*)_spec\..*}) { |m| newest_js_file("spec/javascripts/compiled/#{m[1]}_spec") }
+end
+    </code></pre>
+  </div>  
+
+  <div class="slide">
+    <h1>Setup Jasmine</h1>
+    <code>bundle exec jasmine init</code> - you are set-up and shold be able to run sample specs
+    <code>bundle exec rake jasmine:ci</code>.
+  </div>
+
+  <div class="slide">
+    <h1>Setup Jasmine: JavaScript tools</h1>
+    <pre><code class='bash'>
+> cd spec/javascripts/helpers/
+> wget http://cloud.github.com/downloads/velesin/jasmine-jquery/jasmine-jquery-1.2.0.js
+> wget https://raw.github.com/pivotal/jasmine-ajax/master/lib/mock-ajax.js
+> wget https://raw.github.com/pivotal/jasmine-ajax/master/lib/spec-helper.js
+    </code></pre>
+    <h3>NOTE: You might need to merge <code>spec-helper.js</code> manually.</h3>
+  </div>
+  
+
+  <div class="slide">
+    <h1>Setup Jasmine: configure file locations</h1>
+    <code>vim spec/javascripts/support/jasmine.yml</code>
+    <p>Use wildcard as Rails 3.1 assets include cache buster.
+    <pre><code>
+src_files:
+  - public/assets/first-priority-files-*.js
+  - public/assets/application-*.js
+  - public/assets/**/*.js
+helpers:
+  - helpers/**/*.js
+  - compiled/helpers/*.js
+spec_files:
+  - '**/*[sS]pec.js'
+    </code></pre>
+    
+    <h3>That should be it.</h3>
+  </div>
+  
+  
+  <div class="slide">
+    <h1>Done! Use it!</h1>
+    Run <code>bundle exec guard</code>, move the reminal away and start coding.
+    <img alt="spec runner example" src="assets/guard-headless-specs.png" />
+  </div>
+  
+  
+  
+  <div class="slide">
+    <h1>Example - namespaces</h1>
+    <pre><code class='coffee'>
+describe &#39;App&#39;, -&gt;
+
+  someFunc = -&gt; # empty function
+
+  describe &#39;export&#39;, -&gt;
+    beforeEach -&gt; App.exports &#39;fakeNamespace&#39;, &#39;module&#39;, {someFunc}
+    afterEach -&gt; delete App.fakeNamespace
+
+    it &#39;should register namespace&#39;, -&gt;
+      expect(App.fakeNamespace).toBeTruthy()
+
+    it &#39;should register module with functions&#39;, -&gt;
+      expect(App.fakeNamespace.module.someFunc).toBe someFunc
+    </code></pre>
+  </div>
+  
+  
+  <div class="slide">
+    <h1>Example - Rails CSRF with AJAX</h1>
+    <pre><code class='coffee'>
+describe &#39;Rails Ajax support&#39;, -&gt;
+  beforeEach -&gt;
+    $(&#39;head&#39;).append &quot;&lt;meta content=&#39;bla&#39; class=&#39;test&#39; name=&#39;csrf-token&#39; /&gt;&quot;
+    $(&#39;head&#39;).append &#39;&lt;meta content=&quot;authenticity_token&quot; class=&quot;test&quot; name=&quot;csrf-param&quot; /&gt;&#39;
+    App.utils.rails.init()
+
+  afterEach -&gt; $(&#39;.test&#39;).remove()
+
+  it &#39;should include CSRF token from page&#39;, -&gt;
+    $.get &#39;/something&#39;
+    request = mostRecentAjaxRequest() # notice AJAX is stubbed!
+    expect(request.url).toMatch /authenticity_token=bla/
+
+    </code></pre>
+  </div>
+
+  <div class="slide">
+    <h1>Example - AJAX + alert + animation</h1>
+    <pre><code class='coffee'>
+describe &#39;comment deletion&#39;, -&gt;
+  action = null
+  beforeEach -&gt;
+    action = App.images.commentActions
+    action.init()
+
+  it &quot;should remove the comment with AJAX&quot;, -&gt;
+    item = $(&#39;.comments ul &gt; li:first&#39;)
+    item.find(&#39;a.delete&#39;).click()
+    mostRecentAjaxRequest().response
+      status: 200
+      contentType: &#39;application/json&#39;
+      responseText: &#39;{&quot;success&quot;: true}&#39;
+    $.when(item).done -&gt;
+      expect($(&quot;.comments ul.list&quot;)).not.toContain &quot;&gt; li&quot;
+    </code></pre>
+  </div>
+
+
+  <div class="slide">
+    <h1>Example - Inline <strike>Fixtures</strike> Factories</h1>
+    <pre><code class='coffee'>
+describe &#39;Imgae Info commenting&#39;, -&gt;
+  beforeEach -&gt; App.images.commenter.init()
+  
+  it &quot;should submit comment as AJAX&quot;, -&gt;
+    setFixtures &quot;
+      &lt;div id=#{stringInterpolationIsUseful} class=&#39;content commenting&#39;&gt;
+          etc
+        &lt;/article&gt;
+      &lt;/div&gt;
+    &quot;    
+    $(&#39;form.comment&#39;).submit()
+    expect(mostRecentAjaxRequest()).toBeTruthy()  
+    </code></pre>
+  </div>
+  
+  <div class="slide">
+    <h1>Example - AJAX, verifying REAL-ish DOM</h1>
+    <pre><code class='coffee'>  
+it &quot;should append comment after submit&quot;, -&gt;
+  $(&#39;form.comment&#39;).submit()
+  respond mostRecentAjaxRequest()
+  expect($(&#39;article.image&#39;)).toContain &#39;.comments ul &gt; li.just-added-fake&#39;
+  expect($(&#39;article.image&#39;)).not.toContain &#39;.comments ul ul li.just-added-fake&#39;
+    </code></pre>
+  </div>
+
+
+
+
+  <div class="slide">
+    <h1>Example - DOM events</h1>
+    <pre><code class='coffee'>  
+it &#39;should trigger next on click&#39;, -&gt;
+  spyOn(nav, &#39;onNext&#39;)
+  el = $(&#39;a.next:first&#39;).trigger(&#39;click&#39;)
+  expect(nav.onNext).toHaveBeenCalledWith el[0]
+  
+it &#39;should load images on last click&#39;, -&gt;
+  spyOnEvent $(&#39;.content&#39;), &#39;on-bottom&#39;
+  $(&#39;a.next:last&#39;).trigger(&#39;click&#39;)
+  expect(&#39;on-bottom&#39;).toHaveBeenTriggeredOn $(&#39;.content&#39;)
+
+    </code></pre>
+  </div>
+
+
+
+  <div class="slide">
+    <h1>Example - Generating long HTML</h1>
+    <pre><code class='coffee'>  
+html = (&quot;
+  &lt;div id=&#39;more#{i}&#39; class=&#39;content-wrap&#39;&gt;
+    &lt;div class=&#39;photo&#39;&gt;
+      &lt;div class=&#39;image&#39;&gt;
+        &lt;img src=&#39;data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==&#39;/&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;          
+  &lt;/div&gt;
+&quot; for i in [1,3]).join &quot;\n&quot;
+
+respond = (req) -&gt;
+  req.response
+    status: 200
+    contentType: &#39;text/html&#39;
+    responseText: html
+# Can be used as:
+respond mostRecentAjaxRequest()
+    </code></pre>
+  </div>
+  
+  
+  <div class="slide">
+    <h1>Notes</h1>
+    <ul>
+      <li>CoffeeScript <strong>MUST</strong> have parentesis to call function with NO args. Hurts if you miss this out.</li>
+      <li>If you need to debug - just run jasmine as normally and do it in the browser.</li>
+      <li>Watch out for indentation <sub>[Python is here]</sub></li>
+      <li> Watch out for <code>func: -&gt;</code> vs <code>func = -&gt;</code>.
+      <li>CoffeeScript compiles to JavaScript. Very easy to understand... if you know what JS is.</li>
+      <li>CoffeeScript functions <strong>ALWAYS</strong> return a value.</li>
+    </ul>
+  </div>
+
+  <div class="slide">
+    <h1>Existing problems</h1>
+    <ul>
+      <li>Compiling Rails assets is very slow. 
+        Please contribute to <a href="https://github.com/guard/guard-rails-assets">guard-rails-assets</a> (spork?)
+      </li>
+      <li>All tests are still on a single page. Make sure you use <code>setFuxtures</code> and/or clean up properly.</li>
+      <li>Compiled specs are in source control. Need guard running to autocompile CoffeeScript specs.</li>
+    </ul>
+  </div>
+
+
+  <div class="slide">
+    <h1>Challenges</h1>
+    <ul>
+      <li>Understand the CoffeeScript.</li>
+      <li>Understand the Jasmine's matchers, spies etc.</li>
+      <li>Structure files properly.</li>      
+      <li>Keep balance between <em>too much testing</em> and <em>no tests at all</em></li>
+      <li>Keep balance between speed and quality (well, as usual).</li>
+    </ul>
+  </div>
+
+
+  <div class="slide">
+    <h1>Summary</h1>
+    <ul>
+      <li>Got confidence in the project.</li>
+      <li>Spent significantly more time thought.</li>
+      <li>Still finding my way of testing it.</li>
+    </ul>
+  </div>
+
+
+  <div class="slide">
+    <h1>Thanks</h1>
+    <img src="assets/me.jpg" alt="Photo of Dmytrii Nagirniak" class="lefty" />
+    <h3 class='lefty'>
+      Questions?
+    </h3>
+    <p class='righty'>
+      <a href="http:/www.ApproachE.com">ApproachE.com</a>
+      <br />
+      <a href="http://twitter.com/dnagir">@dnagir</a>
+    </p>
+  </div>
+</div>
+
+</body>
+</html>
