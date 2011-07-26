@@ -35,7 +35,7 @@
   <script type="text/javascript">
     hljs.initHighlightingOnLoad();
   </script>
-
+m
 </head>
 <body>
 
@@ -74,26 +74,13 @@
   
   <div class="slide">
     <h1>My recent public work</h1>
-    <ul>
-      <li> <a href="https://github.com/dnagir/NFactory">NFactory</a> - FactoryGirl for .NET.</li>
-      <li> <a href="http://connecty.approache.com/">Connecty</a> - Simple and free user Feedback (clone of UserVoice and similar).</li>
+    <ul>      
+      <li> <a href="http://connecty.approache.com/">Connecty</a> - Simple and freeuser Feedback (clone of UserVoice and similar).</li>
       <li> <a href="https://github.com/dnagir/guard-rails-assets">guard-rails-assets</a> gem - automatically compile Rails 3.1 assets.</li>
-      <li> <a href="https://github.com/dnagir/highlightjs-coffeescript">CoffeeScript syntax highlighting</a> with highlight.js.</li>      
+      <li> <a href="https://github.com/dnagir/highlightjs-coffeescript">CoffeeScript syntax highlighting</a> with highlight.js.</li>
+      <li> <a href="https://github.com/dnagir/NFactory">NFactory</a> - FactoryGirl for .NET.</li>
     </ul>
-  </div>
-  
-  <div class="slide">
-    <h1>Me on the web</h1>
-    <ul>
-      <li>Tweeting <a href="http://twitter.com/dnagir">@dnagir</a></li>
-      <li>Blogging at <a href="http://blog.ApproachE.com">blog.ApproachE.com</a></li>
-      <li>Git-ing at <a href="http://github.com/dnagir">github.com/dnagir</a></li>
-      <li>LinkedIn-ed at <a href="http://au.linkedin.com/in/dmitriynagirnyak">au.linkedin.com/in/dmitriynagirnyak</a> </li>
-      <li>Also <a href="http://stackoverflow.com/users/148473/dmytrii-nagirniak">StackOverflow-ing</a></li>
-      <li>The rest at <a href="http://www.ApproachE.com">ApproachE.com</a></li>
-    </ul>
-  </div>
-
+  </div>  
 
   <div class="slide">
     <h1>Where it all started</h1>    
@@ -109,12 +96,13 @@
 
 
   <div class="slide">
-    <h1>Make it all work</h1>
+    <h1>Making it all work - issues</h1>
+
     <p>Main issue - <strong>too general</strong> assumptions were made about interactions.</p>
     <ul>
-      <li>All forms are <strong>validated the same way</strong> and submitted via AJAX.</li>
-      <li>Chainsaw - <strong>all forms are submitted</strong> even though only 1 should.</li>
-      <li><em>Infinite scrolling</em> fetches <strong>unrelated resources</strong>, always.</li>
+      <li>Form <strong>validations</strong>.</li>
+      <li>Form <strong>submissions</strong>.</li>
+      <li>Infinite <strong>scrolling</strong>.</li>
       <li>Any changes <strong>break the world</strong>.</li>
     </ul>
   </div>
@@ -161,10 +149,6 @@ SBX.settings.liveColorEdit();
   <div class="slide">
     <h1>Technical issues - unknown behaviour</h1>
     <p>
-      Often it was hard to understand <em>WHY</em> and <em>WHERE</em> particular thing <strong>works</strong>.
-      <br />
-      Examples: Scrolling to bottom triggers 3 request to <strong>load totally unrelated resources</strong>;
-      Loading feedback <strong>coming from nowhere</strong>.
       Too much <strong>magic</strong>.
     </p>
     <pre><code class='javascript'>try {
@@ -196,22 +180,6 @@ var moreHappenings = function (){
 $('.content').trigger('on-bottom');
     </code></pre>
   </div>
-
-
-  <div class="slide">
-    <h1>Would we outsource again: ~ ehh, Yeah</h1>
-    <h3>Let's just move on... <strong>Lessons learned</strong>:</h3>
-    <ul>
-      <li>Front-End developer <em>MUST</em> be a <strong>part of the Team</strong>. All the fucking time!</li>
-      <li>Don't ask to implement <strong>too much interaction</strong>.</li>
-      <li>Ask to split functionality into <strong>smaller modules/files</strong> (and maybe use a framework).</li>
-      <li>Integrate the developed front-end into the app <strong>as it progresses</strong> - better feedback.</li>
-      <li>Stop supporting <strong>old browsers</strong>. Don't fall back to <code>noscript</code> (Even G+ doesn't!) 
-        <sup><em>[Warning - holly-war]</em></sup> 
-      </li>
-      <li>Decide what you do: <strong>rich application</strong> or <strong>HTML web site</strong>. Both might be too time consuming.</li>
-    </ul>    
-  </div>
   
   <div class="slide">
     <h1>How to fix?</h1>
@@ -227,8 +195,8 @@ $('.content').trigger('on-bottom');
     <ul>
       <li>Worked great initially.</li>
       <li><strong>Conflicting RSpec</strong> matchers with Webrat.</li>
-      <li><strong>Too hard to test</strong> JavaScript reach functionality.</li>
-      <li>Felt like using Ruby to drive specs by <strong>injecting JavaScript pieces everywhere</strong>.</li>
+      <li><strong>Injecting JavaScript</strong> from Ruby all the time.</li>
+      <li>Using Ruby to perform <strong>JavaScript testing</strong>.</li>
     </ul>
     <p>
       As a result, <strong>disabled Capybara</strong> and had to do proper JavaScript testing.
@@ -240,60 +208,52 @@ $('.content').trigger('on-bottom');
     <h1>Considered JS Unit Testing options</h1>
     <ul>
       <li>
-        <a href="http://javascriptmvc.com/">JavaScriptMVC</a> - very Rails-like, jQuery oriented.
-        Includes <strong>complete toolset</strong> (packaging, dependency management, testing).
-        But I wanted to maintain RSpec-like test structure. 
-        After <a href="http://forum.javascriptmvc.com/#Topic/32525000000538060">asking on forums</a>
-        decided it's <strong>not the best fit</strong>.
+        <a href="http://javascriptmvc.com/">JavaScriptMVC</a> -
+        <strong>Complete toolset</strong> (packaging, dependency management, testing).
       </li>
       <li>
-        Selenium (1 and 2) and JsTestDriver - You need to run <strong>real browsers</strong>. A bit <strong>more hassle</strong> than I wanted.
+        Selenium (1 and 2) and JsTestDriver - run <strong>real browsers</strong> - more hassle.
       </li>
       <li>
-        <a href="http://pivotal.github.com/jasmine/">Jasmine</a> - very RSpec and Ruby-like.
-        All tests are on a <strong>single page</strong>.
-        You need to <strong>run browser</strong> (even with CI option).
+        <a href="http://pivotal.github.com/jasmine/">Jasmine</a> -
+        <strong>single page</strong> tests. Still needs a <strong>real browser</strong>.
       </li>
       <li>
-        <a href="http://pivotal.github.com/jasmine/">Jasmine</a> with <strong>headless browser</strong> was the way out.
+        <a href="http://pivotal.github.com/jasmine/">Jasmine</a> with <strong>headless browser</strong> was the best option.
       </li>
     </ul>
   </div>
   
   <div class="slide">
-    <h1>Tools that go with Jasmine: JavaScript</h1>
-    <p>These basic additions changed the <strong>experience and feeling</strong> of testing in JavaScript</p>
+    <h1>Tools: JavaScript</h1>
+    <p>These improved <strong>experience and feeling</strong> of testing.</p>
     <ul>
       <li>
         <a href="http://jashkenas.github.com/coffee-script/">CoffeeScript</a> - JavaScript with no 
         <code>function, function, function</code>. 
       </li>
       <li>
-        <a href="https://github.com/velesin/jasmine-jquery">jasmine-jquery</a> - jQuery matchers for Jasmine and <strong>FIXTURES</strong> support.
+        <a href="https://github.com/velesin/jasmine-jquery">jasmine-jquery</a> - <strong>jQuery matchers</strong> for Jasmine and <strong>fixtures</strong> support.
       </li>      
       <li>
-        <a href="https://github.com/pivotal/jasmine-ajax">jasmine-ajax</a> - drop-in <strong>stubbing for XMLHttpRequest</strong>. 
-        All AJAX requests are stubbed by <strong>default</strong>. So you can't load FIXTURES from html files.
+        <a href="https://github.com/pivotal/jasmine-ajax">jasmine-ajax</a> - All AJAX requests are mocked <strong>by default</strong>.
       </li>
     </ul>
   </div>
   
   <div class="slide">
-    <h1>Tools that go with Jasmine: Ruby Gems</h1>
+    <h1>Jasmine: Ruby Gems</h1>
     <ul>
       <li>
         <a href="http://johnbintz.github.com/jasmine-headless-webkit/">jasmine-headless-webkit</a>
-        - run JS specs in a <strong>webkit browser</strong> but <strong>without</strong> running a browser (cut the stupid head off).
+        - run JS specs in a <strong>headless browsers</strong>.
       </li>
       <li>
-        <a href="https://github.com/guard/guard">guard</a> - run tasks when something changes.
-      </li>
-      <li>
-        <a href="">guard-rails-assets</a> - automatically compile Rails 3.1 assets.
+        <a href="https://github.com/guard/guard-rails-assets">guard-rails-assets</a> - automatically compile Rails 3.1 <strong>assets</strong>.
       </li>
       <li>
         <a href="https://github.com/johnbintz/guard-jasmine-headless-webkit">guard-jasmine-headless-webkit</a> 
-        - automatically run JavaScript specs when something changes (~autotest).
+        - run specs when <strong>files change</strong> (~autotest).
       </li>
     </ul>
   </div>
@@ -304,15 +264,13 @@ $('.content').trigger('on-bottom');
     <p>
       <strong>WARNING:</strong>
       <em>Your millage WILL vary. Working with beta.</em>
-      <br />
-      Assuming we are on existing Rails 3.1 (from <strong>3-1-stable</strong> branch ATM) app. You need to:
     </p>
     <ul>
       <li>Update Gemfile</li>
       <li>Setup Guard</li>
       <li>Setup Jasmine</li>
-      <li>Setup Jasmine: JavaScript tools</li>
-      <li>Setup Jasmine: configure file locations</li>
+      <li>Jasmine: JavaScript tools</li>
+      <li>Jasmine: configure file locations</li>
     </ul>        
   </div>  
 
@@ -358,19 +316,18 @@ end
     <h1>Setup Jasmine</h1>
     <code>bundle exec jasmine init</code>
     <p>
-      You are set-up and shold be able to run sample specs
-      <br />
-      <code>bundle exec rake jasmine:ci</code>
+      You are set-up and should be able to <strong>run sample specs</strong>.
     </p>
+    <code>bundle exec rake jasmine:ci</code>
   </div>
 
   <div class="slide">
     <h1>Setup Jasmine: JavaScript tools</h1>
     <pre><code class='bash'>
-> cd spec/javascripts/helpers/
-> wget http://cloud.github.com/downloads/velesin/jasmine-jquery/jasmine-jquery-1.2.0.js
-> wget https://raw.github.com/pivotal/jasmine-ajax/master/lib/mock-ajax.js
-> wget https://raw.github.com/pivotal/jasmine-ajax/master/lib/spec-helper.js
+cd spec/javascripts/helpers/
+wget "http://cloud.github.com/downloads/velesin/jasmine-jquery/jasmine-jquery-1.2.0.js"
+wget "https://raw.github.com/pivotal/jasmine-ajax/master/lib/mock-ajax.js"
+wget "https://raw.github.com/pivotal/jasmine-ajax/master/lib/spec-helper.js"
     </code></pre>
     <h3>NOTE: You might need to merge <code>spec-helper.js</code> manually.</h3>
   </div>
@@ -390,9 +347,7 @@ helpers:
   - compiled/helpers/*.js
 spec_files:
   - '**/*[sS]pec.js'
-    </code></pre>
-    
-    <h3>That should be it.</h3>
+    </code></pre>    
   </div>
   
   
@@ -463,25 +418,6 @@ describe &#39;comment deletion&#39;, -&gt;
       expect($(&quot;.comments ul.list&quot;)).not.toContain &quot;&gt; li&quot;
     </code></pre>
   </div>
-
-
-  <div class="slide">
-    <h1>Example - Inline <del>Fixtures</del> Factories</h1>
-    <pre><code class='coffee'>
-describe &#39;Imgae Info commenting&#39;, -&gt;
-  beforeEach -&gt; App.images.commenter.init()
-  
-  it &quot;should submit comment as AJAX&quot;, -&gt;
-    setFixtures &quot;
-      &lt;div id=#{stringInterpolationIsUseful} class=&#39;content commenting&#39;&gt;
-          etc
-        &lt;/article&gt;
-      &lt;/div&gt;
-    &quot;    
-    $(&#39;form.comment&#39;).submit()
-    expect(mostRecentAjaxRequest()).toBeTruthy()  
-    </code></pre>
-  </div>
   
   <div class="slide">
     <h1>Example - AJAX, verifying REAL-ish DOM</h1>
@@ -516,6 +452,26 @@ it &#39;should load images on last click&#39;, -&gt;
 
 
   <div class="slide">
+    <h1>Example - Inline <del>Fixtures</del> Factories</h1>
+    <pre><code class='coffee'>
+describe &#39;Imgae Info commenting&#39;, -&gt;
+  beforeEach -&gt; App.images.commenter.init()
+  
+  it &quot;should submit comment as AJAX&quot;, -&gt;
+    setFixtures &quot;
+      &lt;div id=#{stringInterpolationIsUseful} class=&#39;content commenting&#39;&gt;
+          etc
+        &lt;/article&gt;
+      &lt;/div&gt;
+    &quot;    
+    $(&#39;form.comment&#39;).submit()
+    expect(mostRecentAjaxRequest()).toBeTruthy()  
+    </code></pre>
+  </div>
+
+
+
+  <div class="slide">
     <h1>Example - Generating long HTML</h1>
     <pre><code class='coffee'>  
 html = (&quot;
@@ -540,17 +496,21 @@ respond mostRecentAjaxRequest()
   
   
   <div class="slide">
-    <h1>Notes</h1>
+    <h1>Lessons learned: General</h1>
     <ul>
-      <li>CoffeeScript <strong>MUST have parentheses</strong> to call a function with NO args. Hurts if you miss this out.</li>
-      <li>If you need to debug - run jasmine as normally and <strong>debug in the browser</strong>.</li>
-      <li>Watch out for <strong>indentation</strong> <sup>[Python is here]</sup></li>
-      <li>Watch out for <code>myFunc: -&gt;</code> vs <code>myFunc = -&gt;</code>.</li>
-      <li>
-        Do not use CoffeeScript <code>class</code>-es.
-        There are better ways to <strong>reuse code</strong> in JavaScript.
+      <li><strong>No once off work</strong> for front end.</li>
+      <li>Stop supporting <strong>old browsers</strong>. (Even G+ doesn't!) 
+        <sup><em>[Warning: holly-war]</em></sup> 
       </li>
-      <li>CoffeeScript function <strong>ALWAYS returns a value</strong>.</li>
+      <li>Decide what you need: <strong>rich application</strong> or <strong>HTML web site</strong>.</li>        
+  </div>
+  <div class="slide">
+    <h1>Lessons learned: Details</h1>
+    <ul>
+      <li>CoffeeScript <strong>MUST have parentheses</strong> to call a function with NO args.</li>
+      <li>Watch out for <strong>indentation</strong> <sup>[Python is here]</sup></li>
+      <li>Do not use CoffeeScript <code>class</code>-es.</li>
+      <li>Tripple test Rails 3.1 <strong>assets compression</strong>.</li>
     </ul>
   </div>
 
@@ -561,10 +521,9 @@ respond mostRecentAjaxRequest()
         Please contribute to <a href="https://github.com/guard/guard-rails-assets">guard-rails-assets</a> (spork?).
       </li>
       <li>
-        All tests are still on a <strong>single page</strong>. 
-        Make sure you use <code>setFuxtures</code> and/or <strong>clean up properly</strong>.</li>
+        Still <strong>single page</strong> tests. <strong>Clean up properly</strong>.</li>
       <li>Compiled specs are in <strong>source control</strong>.</li>
-      <li>Guard should run to <strong>autocompile CoffeeScript</strong> specs.</li>
+      <li>Guard should run to <strong>compile CoffeeScript</strong> specs.</li>
     </ul>
   </div>
 
@@ -572,10 +531,9 @@ respond mostRecentAjaxRequest()
   <div class="slide">
     <h1>Challenges</h1>
     <ul>
-      <li>Understand the <strong>CoffeeScript</strong>.</li>
+      <li>Gotchas of the <strong>CoffeeScript</strong>.</li>
       <li>Understand the <strong>Jasmine</strong>'s matchers, spies etc.</li>
       <li><strong>Structure</strong> files properly and be <strong>consistent</strong>.</li>
-      <li>Keep balance between <em>too much testing</em> and <em>no tests at all</em>.</li>
       <li>Tempting to <strong>overtest</strong>.</li>
     </ul>
   </div>
@@ -596,14 +554,20 @@ respond mostRecentAjaxRequest()
     <a href="http://tddjs.com/" class="lefty">
       <img alt="Cover of TDDJS book" src="assets/ttdjs.png" />
     </a>
-    This single book will give you a great start understanding JavaScript and getting your head around testing.
+    This <strong>single</strong> book will give you a great start understanding JavaScript and getting your head around testing.
   </div>
 
   <div class="slide">
-    <h1>Thanks</h1>
-    <a href="http://www.ApproachE.com" class="lefty">
+    <h1>Thanks!</h1>
+    <a href="http://www.ApproachE.com">
       <img src="assets/me.jpg" alt="Photo of Dmytrii Nagirniak" />
     </a>
+    <ul class="righty">
+      <li><a href="http://twitter.com/dnagir">@dnagir</a></li>
+      <li><a href="http://blog.ApproachE.com">blog.ApproachE.com</a></li>
+      <li><a href="http://github.com/dnagir">github.com/dnagir</a></li>
+      <li>The rest is at <a href="http://www.ApproachE.com">ApproachE.com</a></li>
+    </ul>
     <p>
       This presentation is available at 
       <br />
