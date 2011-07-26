@@ -67,7 +67,7 @@
     </p>
     <ul class="clear">
       <li>Life wasn't challenging enough, so in 2010 jumped into Linux and Ruby.</li>
-      <li>Winner of <a href="http://rubylearning.com/blog/2010/04/06/dmitiry-nagirnyak-winner-rpcfn-7/">RubyLearning challenge #7</a>.</li>
+      <li>Won <a href="http://rubylearning.com/blog/2010/04/06/dmitiry-nagirnyak-winner-rpcfn-7/">RubyLearning challenge #7</a>.</li>
       <li>Currently Tech. Lead at <a href="http://www.propconnect.com">PropConnect</a> (Real Estate)</li>
     </ul>
   </div>
@@ -98,7 +98,7 @@
   <div class="slide">
     <h1>Where it all started</h1>    
     <p>
-      A free time, side project with the usability as first priority. Design First Development.
+      A free time, side project with the usability as first priority. <strong>Design First Development</strong>.
     </p>
     <ul>
       <li>Great design was produced.</li>
@@ -110,19 +110,19 @@
 
   <div class="slide">
     <h1>Make it all work</h1>
-    <p>Main issue - too general assumptions were made about interactions.</p>
+    <p>Main issue - <strong>too general</strong> assumptions were made about interactions.</p>
     <ul>
-      <li>All forms are validated the same way and submitted via AJAX.</li>
-      <li>All forms are on a page are submitted even though only 1 should.</li>
-      <li><em>Infinite scrolling</em> fetches unrelated resources, always.</li>
-      <li>Any changes break the world.</li>
+      <li>All forms are <strong>validated the same way</strong> and submitted via AJAX.</li>
+      <li>Chainsaw - <strong>all forms are submitted</strong> even though only 1 should.</li>
+      <li><em>Infinite scrolling</em> fetches <strong>unrelated resources</strong>, always.</li>
+      <li>Any changes <strong>break the world</strong>.</li>
     </ul>
   </div>
 
   
   <div class="slide">
     <h1>Technical issues - single file > 1000 LOC</h1>
-    <p>Incredibly hard to maintain - all the front-end logic in a <strong>single</strong> file.</p>
+    <p>Incredibly <strong>hard to maintain</strong> - all the front-end logic in a <strong>single</strong> file.</p>
     <pre><code class="javascript">
 SBX.common.overlays();
 SBX.common.scrolledToBottom();
@@ -161,11 +161,14 @@ SBX.settings.liveColorEdit();
 
   <div class="slide">
     <h1>Technical issues - unknown behaviour</h1>
-    <p>Often it was hard to understand <em>WHY</em> and <em>WHERE</em> particular thing works.
+    <p>
+      Often it was hard to understand <em>WHY</em> and <em>WHERE</em> particular thing <strong>works</strong>.
       <br />
-      Example: Scrolling to bottom triggers 3 request to load totally unrelated resources.</p>
-    <pre><code class='javascript'>
-try {
+      Examples: Scrolling to bottom triggers 3 request to <strong>load totally unrelated resources</strong>;
+      Loading feedback <strong>coming from nowhere</strong>.
+      Too much <strong>magic</strong>.
+    </p>
+    <pre><code class='javascript'>try {
   var data = $.parseJSON(dataR);
 } catch (e) {
   try {
@@ -181,8 +184,7 @@ try {
   
   <div class="slide">
     <h1>Technical issues - unconditional initialisation</h1>
-    <pre><code class='javascript'>
-var moreUsers = function (){
+    <pre><code class='javascript'>var moreUsers = function (){
   $('.content').bind('on-bottom',function(){ /*...*/ })
 },
 
@@ -199,16 +201,16 @@ $('.content').trigger('on-bottom');
 
   <div class="slide">
     <h1>Would we outsource again: ~ ehh, Yeah</h1>
-    <h3>Let's just move on... Lessons learned:</h3>
+    <h3>Let's just move on... <strong>Lessons learned</strong>:</h3>
     <ul>
-      <li>Front-End developer <em>MUST</em> be a part of the Team. All the fucking time!</li>
-      <li>Don't ask to implement too much interaction.</li>
-      <li>Ask to split functionality into smaller modules/files (and maybe use a framework).</li>
-      <li>Integrate the developed front-end into the app as it progresses - better feedback.</li>
-      <li>Stop supporting old browsers. Don't fall back to <code>noscript</code> (Even G+ doesn't!) 
+      <li>Front-End developer <em>MUST</em> be a <strong>part of the Team</strong>. All the fucking time!</li>
+      <li>Don't ask to implement <strong>too much interaction</strong>.</li>
+      <li>Ask to split functionality into <strong>smaller modules/files</strong> (and maybe use a framework).</li>
+      <li>Integrate the developed front-end into the app <strong>as it progresses</strong> - better feedback.</li>
+      <li>Stop supporting <strong>old browsers</strong>. Don't fall back to <code>noscript</code> (Even G+ doesn't!) 
         <sup><em>[Warning - holly-war]</em></sup> 
       </li>
-      <li>Decide what you do: rich application or HTML web site. Both might be too time consuming.</li>
+      <li>Decide what you do: <strong>rich application</strong> or <strong>HTML web site</strong>. Both might be too time consuming.</li>
     </ul>    
   </div>
   
@@ -225,12 +227,12 @@ $('.content').trigger('on-bottom');
     <h1>A word on Capybara</h1>
     <ul>
       <li>Worked great initially.</li>
-      <li>Conflicting RSpec matchers with webrat.</li>
-      <li>Too hard to test JavaScript reach functionality.</li>
-      <li>Felt like using Ruby to drive specs by injecting JavaScript pieces everywhere.</li>
+      <li><strong>Conflicting RSpec</strong> matchers with Webrat.</li>
+      <li><strong>Too hard to test</strong> JavaScript reach functionality.</li>
+      <li>Felt like using Ruby to drive specs by <strong>injecting JavaScript pieces everywhere</strong>.</li>
     </ul>
     <p>
-      As a result, disabled Capybara and had to do proper JavaScript testing.
+      As a result, <strong>disabled Capybara</strong> and had to do proper JavaScript testing.
     </p>
   </div>
   
@@ -240,27 +242,28 @@ $('.content').trigger('on-bottom');
     <ul>
       <li>
         <a href="http://javascriptmvc.com/">JavaScriptMVC</a> - very Rails-like, jQuery oriented.
-        Includes complete toolset (packaging, dependency management, testing).
+        Includes <strong>complete toolset</strong> (packaging, dependency management, testing).
         But I wanted to maintain RSpec-like test structure. 
-        After <a href="http://forum.javascriptmvc.com/#Topic/32525000000538060">asking on forums</a> decided it's not the best fit.
+        After <a href="http://forum.javascriptmvc.com/#Topic/32525000000538060">asking on forums</a>
+        decided it's <strong>not the best fit</strong>.
       </li>
       <li>
-        Selenium (1 and 2) and JsTestDriver - You need to run real browsers. A bit more hassle than I wanted.
+        Selenium (1 and 2) and JsTestDriver - You need to run <strong>real browsers</strong>. A bit <strong>more hassle</strong> than I wanted.
       </li>
       <li>
         <a href="http://pivotal.github.com/jasmine/">Jasmine</a> - very RSpec and Ruby-like.
-        All tests are on a single page.
-        You need to run browser (even with CI option).
+        All tests are on a <strong>single page</strong>.
+        You need to <strong>run browser</strong> (even with CI option).
       </li>
       <li>
-        <a href="http://pivotal.github.com/jasmine/">Jasmine</a> on steroids was the way out.
+        <a href="http://pivotal.github.com/jasmine/">Jasmine</a> with <strong>headless browser</strong> was the way out.
       </li>
     </ul>
   </div>
   
   <div class="slide">
     <h1>Tools that go with Jasmine: JavaScript</h1>
-    <p>This basic additions changed the experience and feeling of testing in JavaScript</p>
+    <p>These basic additions changed the <strong>experience and feeling</strong> of testing in JavaScript</p>
     <ul>
       <li>
         <a href="http://jashkenas.github.com/coffee-script/">CoffeeScript</a> - JavaScript with no 
@@ -270,8 +273,8 @@ $('.content').trigger('on-bottom');
         <a href="https://github.com/velesin/jasmine-jquery">jasmine-jquery</a> - jQuery matchers for Jasmine and <strong>FIXTURES</strong> support.
       </li>      
       <li>
-        <a href="https://github.com/pivotal/jasmine-ajax">jasmine-ajax</a> - drop-in stubbing for XMLHttpRequest. 
-        All AJAX requests are stubbed y default. So you can't load FIXTURES from html files.
+        <a href="https://github.com/pivotal/jasmine-ajax">jasmine-ajax</a> - drop-in <strong>stubbing for XMLHttpRequest</strong>. 
+        All AJAX requests are stubbed by <strong>default</strong>. So you can't load FIXTURES from html files.
       </li>
     </ul>
   </div>
@@ -281,7 +284,7 @@ $('.content').trigger('on-bottom');
     <ul>
       <li>
         <a href="http://johnbintz.github.com/jasmine-headless-webkit/">jasmine-headless-webkit</a>
-        - run JS specs in a webkit browser but without running a browsers (cut the stupid head off).
+        - run JS specs in a <strong>webkit browser</strong> but <strong>without</strong> running a browser (cut the stupid head off).
       </li>
       <li>
         <a href="https://github.com/guard/guard">guard</a> - run tasks when something changes.
@@ -329,9 +332,7 @@ group :test do
   gem 'jasmine-headless-webkit', :git => 'https://github.com/johnbintz/jasmine-headless-webkit.git' # https://github.com/johnbintz/jasmine-headless-webkit/issues/10#issuecomment-1348568
 end    
     </code></pre>    
-    <pre><code class='bash'>
-> bundle
-    </code></pre>
+    <pre><code class='bash'>&gt; bundle</code></pre>
   </div>
 
 
@@ -542,25 +543,29 @@ respond mostRecentAjaxRequest()
   <div class="slide">
     <h1>Notes</h1>
     <ul>
-      <li>CoffeeScript <strong>MUST</strong> have parentheses to call a function with NO args. Hurts if you miss this out.</li>
-      <li>If you need to debug - just run jasmine as normally and do it in the browser.</li>
-      <li>Watch out for indentation <sup>[Python is here]</sup></li>
-      <li>Watch out for <code>func: -&gt;</code> vs <code>func = -&gt;</code>.</li>
-      <li>Do not use CoffeeScript <code>class</code>-es - more issues with <code>this</code>. Bold arrow <code>func: =&gt;</code> isn't always helpful.</li>
-      <li>CoffeeScript compiles to JavaScript. Very easy to understand... if you know what JS is.</li>
-      <li>CoffeeScript functions <strong>ALWAYS</strong> return a value.</li>
+      <li>CoffeeScript <strong>MUST have parentheses</strong> to call a function with NO args. Hurts if you miss this out.</li>
+      <li>If you need to debug - run jasmine as normally and <strong>debug in the browser</strong>.</li>
+      <li>Watch out for <strong>indentation</strong> <sup>[Python is here]</sup></li>
+      <li>Watch out for <code>myFunc: -&gt;</code> vs <code>myFunc = -&gt;</code>.</li>
+      <li>
+        Do not use CoffeeScript <code>class</code>-es.
+        There are better ways to <strong>reuse code</strong> in JavaScript.
+      </li>
+      <li>CoffeeScript function <strong>ALWAYS returns a value</strong>.</li>
     </ul>
   </div>
 
   <div class="slide">
     <h1>Existing problems</h1>
     <ul>
-      <li>Compiling Rails assets is very slow. 
+      <li>Compiling Rails assets is <strong>very slow</strong>. 
         Please contribute to <a href="https://github.com/guard/guard-rails-assets">guard-rails-assets</a> (spork?).
       </li>
-      <li>All tests are still on a single page. Make sure you use <code>setFuxtures</code> and/or clean up properly.</li>
-      <li>Compiled specs are in source control.</li>
-      <li>Guard should run to autocompile CoffeeScript specs.</li>
+      <li>
+        All tests are still on a <strong>single page</strong>. 
+        Make sure you use <code>setFuxtures</code> and/or <strong>clean up properly</strong>.</li>
+      <li>Compiled specs are in <strong>source control</strong>.</li>
+      <li>Guard should run to <strong>autocompile CoffeeScript</strong> specs.</li>
     </ul>
   </div>
 
@@ -568,11 +573,11 @@ respond mostRecentAjaxRequest()
   <div class="slide">
     <h1>Challenges</h1>
     <ul>
-      <li>Understand the CoffeeScript.</li>
-      <li>Understand the Jasmine's matchers, spies etc.</li>
-      <li>Structure files properly.</li>      
+      <li>Understand the <strong>CoffeeScript</strong>.</li>
+      <li>Understand the <strong>Jasmine</strong>'s matchers, spies etc.</li>
+      <li><strong>Structure</strong> files properly and be <strong>consistent</strong>.</li>
       <li>Keep balance between <em>too much testing</em> and <em>no tests at all</em>.</li>
-      <li>Keep balance between speed and quality (well, as usual).</li>
+      <li>Tempting to <strong>overtest</strong>.</li>
     </ul>
   </div>
 
@@ -580,10 +585,10 @@ respond mostRecentAjaxRequest()
   <div class="slide">
     <h1>Summary</h1>
     <ul>
-      <li>Got confidence in the project.</li>
-      <li>Enabled fast feedback and BDD-style of development.</li>
-      <li>Spent significantly more time though.</li>
-      <li>Still finding my way of testing things.</li>
+      <li>Got <strong>confidence</strong> in the project.</li>
+      <li>Enabled <strong>fast feedback</strong> and <strong>BDD</strong>-style of development.</li>
+      <li>Spent <strong>significantly more</strong> time though.</li>
+      <li>Still <strong>finding my way</strong> of testing things.</li>
     </ul>
   </div>
 
