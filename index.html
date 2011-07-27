@@ -52,88 +52,59 @@
 
 <div class="presentation">
   <div class="slide">
-    <h1>Testing your JavaScript</h1>
-    <h2>Just sharing my experience</h2>
-    <h3>Dmytrii Nagirniak (~ Dima)</h3>
-    <h4>Believer that Software Development is an <a href="http://www.ApproachE.com">art</a>.</h4>
+    <div class="lefty">
+      <h1>Testing your JavaScript</h1>
+      <h2>Sharing my experience</h2>
+      <h3>Dmytrii Nagirniak (~ Dima)</h3>
+      <h4>Believer that Software Development is an <a href="http://www.ApproachE.com">art</a>.</h4>
+    </div>
+    <img alt="Testing JavaScript" src="assets/tests-yo.jpg" class="righty" />
   </div>
 
   <div class="slide">
     <h1>Purpose</h1>
-    <ul>
-      <li>Engage people and convince to <strong>start testing</strong> JavaScript.</li>
+    <ul class="lefty">
+      <li>Get you to <strong>start testing</strong> JavaScript.</li>
       <li><strong>Start discussion</strong> about doing it easier.</li>
-      <li>Encourage people to <strong>contribute</strong> to <code>guard-rails-assets</code>.</li>
+      <li><strong>Contribute</strong> to <code>guard-rails-assets</code>.</li>
     </ul>
+    <img alt="Start testing" src="assets/start-testing.jpg" class="righty" />
   </div>
 
 
 
   <div class="slide">
     <h1>Outline</h1>
-    <ul>
+    <ul class="lefty">
       <li><strong>Why</strong> I had to start testing.</li>
       <li><strong>Options</strong> I considered in Ruby world.</li>
       <li>Quick <strong>set-up</strong> guide.</li>
       <li><strong>Examples</strong> of the tests.</li>
     </ul>
+    <img alt="Outline" src="assets/outline.jpg" class="righty" />
   </div>
-  
-
-  
+    
   <div class="slide">
-    <h1>Dmytrii Nagirniak - Who am I?</h1>
-    <img src="assets/me.jpg" alt="Photo of Dmytrii Nagirniak" class="lefty" />
-    <p>
-      Doing .NET (sorry to upset you) for living and Ruby for love and fun hoping someone will suggest me to go Ruby full-time.
-    </p>
-    <ul class="clear">
-      <li>Life wasn't challenging enough, so in 2010 jumped into Linux and Ruby.</li>
-      <li>Won <a href="http://rubylearning.com/blog/2010/04/06/dmitiry-nagirnyak-winner-rpcfn-7/">RubyLearning challenge #7</a>.</li>
-      <li>Currently Tech. Lead at <a href="http://www.propconnect.com">PropConnect</a> (Real Estate).</li>
-    </ul>
-  </div>
-  
-  <div class="slide">
-    <h1>My recent public work</h1>
-    <ul>      
-      <li> <a href="http://connecty.approache.com/">Connecty</a> - Simple and free user Feedback (clone of UserVoice and similar).</li>
-      <li> <a href="https://github.com/dnagir/guard-rails-assets">guard-rails-assets</a> gem - automatically compile Rails 3.1 assets.</li>
-      <li> <a href="https://github.com/dnagir/highlightjs-coffeescript">CoffeeScript syntax highlighting</a> with highlight.js.</li>
-      <li> <a href="https://github.com/dnagir/NFactory">NFactory</a> - FactoryGirl for .NET.</li>
-    </ul>
-  </div>  
-
-  <div class="slide">
-    <h1>Where it all started</h1>    
-    <p>
-      A free time, side project with the usability as first priority. <strong>Design First Development</strong>.
-    </p>
-    <ul>
-      <li>Great design was produced.</li>
-      <li>Outsorced front-end development.</li>
-      <li>Great looking result.</li>
-    </ul>
+    <h1>New approach to existing Idea</h1>    
+    <img alt="Idea" src="assets/idea.jpg" class="lefty" />
+    Volunteered to make Internet a little better world with <strong>usability in mind</strong>.
   </div>
 
 
   <div class="slide">
-    <h1>Making it all work - issues</h1>
-
-    <p>Main issue - <strong>too general</strong> assumptions were made about interactions.</p>
-    <ul>
-      <li>Form <strong>validations</strong>.</li>
-      <li>Form <strong>submissions</strong>.</li>
-      <li>Infinite <strong>scrolling</strong>.</li>
-      <li>Any changes <strong>break the world</strong>.</li>
-    </ul>
+    <h1>Results of outsourcing</h1>
+    <h3>
+      <strong>Too generic</strong> implementation that <strong>breaks the world</strong>.
+    </h3>
+    <img alt="Frustrated" src="assets/frustration-man.jpg" class="lefty" />
+    <img alt="Frustratoin ahead" src="assets/frustration.jpg" class="righty" />
   </div>
 
   
   <div class="slide">
-    <h1>Technical issues - single file > 1000 LOC</h1>
-    <p>Incredibly <strong>hard to maintain</strong> - all the front-end logic in a <strong>single</strong> file.</p>
-    <pre><code class="javascript">SBX.common.overlays();
+    <h1>Single file > 1000 LOC</h1>
+    <strong>Hard to maintain</strong> - all the front-end logic in a <strong>single</strong> file.
+    <pre class="lefty"><code class="javascript">SBX.common.overlays();
 SBX.common.scrolledToBottom();
 SBX.common.toggleButtons();
 SBX.common.ajax.loading();
@@ -166,14 +137,15 @@ SBX.settings.inPlaceEdit();
 SBX.settings.imagePreview();
 SBX.settings.liveColorEdit();
     </code></pre>
+    
+    <img alt="Too much stuff in a file" src="assets/matrix.jpg" class="righty" />
   </div>
 
   <div class="slide">
-    <h1>Technical issues - unknown behaviour</h1>
-    <p>
-      Too much <strong>magic</strong>.
-    </p>
-    <pre><code class='javascript'>try {
+    <h1>Magical behaviour</h1>
+    <img alt="Too much magic" src="assets/magic.jpg" />
+    Too much <strong>magic</strong>.    
+    <pre class="lefty"><code class='javascript'>try {
   var data = $.parseJSON(dataR);
 } catch (e) {
   try {
@@ -183,13 +155,13 @@ SBX.settings.liveColorEdit();
     $(form).trigger(&quot;server-error&quot;,[jqXHR, textStatus, ex]);
   }
 }
-    </code></pre>
+    </code></pre>    
   </div>
   
   
   <div class="slide">
-    <h1>Technical issues - unconditional initialisation</h1>
-    <pre><code class='javascript'>var moreUsers = function (){
+    <h1>Unconditional initialisation</h1>
+    <pre ><code class='javascript'>var moreUsers = function (){
   $('.content').bind('on-bottom',function(){ /*...*/ })
 },
 
@@ -200,100 +172,85 @@ var moreHappenings = function (){
 // All handlers are executed as expected.
 // But the interaction is NOT expected.
 $('.content').trigger('on-bottom');
-    </code></pre>
+    </code></pre>        
   </div>
   
   <div class="slide">
     <h1>How to fix?</h1>
-    <ul>
+    <ul class="lefty">
       <li>Integration tests (Capybara >= 1.0).</li>
       <li>JavaScript unit testing.</li>
       <li>Incremental updates.</li>
     </ul>
+    <img alt="Fixing?" src="assets/thinking.jpg" class="righty" />
   </div>
   
   <div class="slide">
     <h1>A word on Capybara</h1>
-    <ul>
-      <li>Worked great initially.</li>
-      <li><strong>Conflicting RSpec</strong> matchers with Webrat.</li>
-      <li><strong>Injecting JavaScript</strong> from Ruby all the time.</li>
-      <li>Using Ruby to perform <strong>JavaScript testing</strong>.</li>
-    </ul>
-    <p>
-      As a result, <strong>disabled Capybara</strong> and had to do proper JavaScript testing.
-    </p>
+    <img alt="Capybara" src="assets/capybara.jpg" class="lefty" />
+
+    Using Ruby to <strong>inject JavaScript</strong> for testing.
+    <br />
+    A sign that the tool is used the wrong way.
   </div>
   
   
   <div class="slide">
-    <h1>Considered JS Unit Testing options</h1>
-    <ul>
+    <h1>Considered JS Unit-Testing options</h1>
+    <ul class="lefty">
       <li>
-        <a href="http://javascriptmvc.com/">JavaScriptMVC</a> -
-        <strong>Complete toolset</strong> (packaging, dependency management, testing).
+        <a href="http://javascriptmvc.com/">JavaScriptMVC</a>
       </li>
       <li>
-        Selenium (1 and 2) and JsTestDriver - run <strong>real browsers</strong> - more hassle.
+        <a href="http://docs.jquery.com/Qunit">QUnit</a>
       </li>
       <li>
-        <a href="http://pivotal.github.com/jasmine/">Jasmine</a> -
-        <strong>single page</strong> tests. Still needs a <strong>real browser</strong>.
+        <a href="http://pivotal.github.com/jasmine/">Jasmine</a>
       </li>
       <li>
-        <a href="http://pivotal.github.com/jasmine/">Jasmine</a> with <strong>headless browser</strong> was the best option.
+        Selenium (1 and 2) and JsTestDriver
       </li>
     </ul>
+    <img alt="Frameworks" src="assets/frameworks.png" class="righty" />
   </div>
   
   <div class="slide">
     <h1>Tools: JavaScript</h1>
-    <p>These improved <strong>experience and feeling</strong> of testing.</p>
-    <ul>
+    <ul class="lefty">
       <li>
-        <a href="http://jashkenas.github.com/coffee-script/">CoffeeScript</a> - JavaScript with no 
-        <code>function, function, function</code>. 
+        <a href="http://jashkenas.github.com/coffee-script/">CoffeeScript</a>
       </li>
       <li>
-        <a href="https://github.com/velesin/jasmine-jquery">jasmine-jquery</a> - <strong>jQuery matchers</strong> for Jasmine and <strong>fixtures</strong> support.
+        <a href="https://github.com/velesin/jasmine-jquery">jasmine-jquery</a>
       </li>      
       <li>
-        <a href="https://github.com/pivotal/jasmine-ajax">jasmine-ajax</a> - All AJAX requests are mocked <strong>by default</strong>.
+        <a href="https://github.com/pivotal/jasmine-ajax">jasmine-ajax</a>
       </li>
     </ul>
+    <img alt="DHH and CoffeeScript" src="assets/dhh-coffee.png" class="righty" />
+    <img alt="Tools" src="assets/tools.jpg" class="righty" />
   </div>
   
   <div class="slide">
-    <h1>Jasmine: Ruby Gems</h1>
-    <ul>
+    <h1>Tools: Ruby</h1>
+    <ul class="lefty">
       <li>
         <a href="http://johnbintz.github.com/jasmine-headless-webkit/">jasmine-headless-webkit</a>
-        - run JS specs in a <strong>headless browsers</strong>.
       </li>
       <li>
-        <a href="https://github.com/guard/guard-rails-assets">guard-rails-assets</a> - automatically compile Rails 3.1 <strong>assets</strong>.
+        <a href="https://github.com/guard/guard-rails-assets">guard-rails-assets</a>
       </li>
       <li>
-        <a href="https://github.com/johnbintz/guard-jasmine-headless-webkit">guard-jasmine-headless-webkit</a> 
-        - run specs when <strong>files change</strong> (~autotest).
+        <a href="https://github.com/johnbintz/guard-jasmine-headless-webkit">guard-jasmine-headless-webkit</a>
       </li>
-    </ul>
+    </ul>    
+    <img alt="Tools" src="assets/ruby-tools.png" class="righty" />    
   </div>
 
 
   <div class="slide">
     <h1>Setting everything up</h1>
-    <p>
-      <strong>WARNING:</strong>
-      <em>Your millage WILL vary. Working with beta.</em>
-    </p>
-    <ul>
-      <li>Update Gemfile</li>
-      <li>Setup Guard</li>
-      <li>Setup Jasmine</li>
-      <li>Jasmine: JavaScript tools</li>
-      <li>Jasmine: configure file locations</li>
-    </ul>        
+    <img alt="Works On My Machine" src="assets/womm.jpg" />
   </div>  
 
 
@@ -336,11 +293,15 @@ end
 
   <div class="slide">
     <h1>Setup Jasmine</h1>
-    <code>bundle exec jasmine init</code>
-    <p>
-      You are set-up and should be able to <strong>run sample specs</strong>.
-    </p>
-    <code>bundle exec rake jasmine:ci</code>
+    <div class="lefty">
+      <code>bundle exec jasmine init</code>
+      <p>
+        You are set-up and should be able to <strong>run sample specs</strong>.
+      </p>
+      <code>bundle exec rake jasmine:ci</code>
+    </div>
+    
+    <img alt="Jasmine" src="assets/jasmine.jpg" class="righty" />
   </div>
 
   <div class="slide">
@@ -351,7 +312,7 @@ wget "http://cloud.github.com/downloads/velesin/jasmine-jquery/jasmine-jquery-1.
 wget "https://raw.github.com/pivotal/jasmine-ajax/master/lib/mock-ajax.js"
 wget "https://raw.github.com/pivotal/jasmine-ajax/master/lib/spec-helper.js"
     </code></pre>
-    <h3>NOTE: You might need to merge <code>spec-helper.js</code> manually.</h3>
+    <h3>NOTE: You might need to merge <code>spec-helper.js</code> manually.</h3>    
   </div>
   
 
@@ -495,8 +456,7 @@ describe &#39;Imgae Info commenting&#39;, -&gt;
 
   <div class="slide">
     <h1>Example - Generating long HTML</h1>
-    <pre><code class='coffee'>  
-html = (&quot;
+    <pre><code class='coffee'>html = (&quot;
   &lt;div id=&#39;more#{i}&#39; class=&#39;content-wrap&#39;&gt;
     &lt;div class=&#39;photo&#39;&gt;
       &lt;div class=&#39;image&#39;&gt;
@@ -519,57 +479,50 @@ respond mostRecentAjaxRequest()
   
   <div class="slide">
     <h1>Lessons learned: General</h1>
-    <ul>
-      <li><strong>No once off work</strong> for front end.</li>
-      <li>Stop supporting <strong>old browsers</strong>. (Even G+ doesn't!) 
-        <sup><em>[Warning: holly-war]</em></sup> 
-      </li>
-      <li>Decide what you need: <strong>rich application</strong> or <strong>HTML web site</strong>.</li>        
+    <ul class="lefty">
+      <li>Front-end dev - <strong>part of the team</strong>.</li>
+      <li>Good UX/UI is hard.</li>
+      <li><strong>Rich app</strong> vs <strong>Web Site</strong>.</li>        
     </ul>
+    <img alt="Lessons learned" src="assets/lessons-learned.jpg" class="righty" />
   </div>
+  
   <div class="slide">
-    <h1>Lessons learned: Details</h1>
-    <ul>
-      <li>CoffeeScript <strong>MUST have parentheses</strong> to call a function with NO args.</li>
-      <li>Watch out for <strong>indentation</strong> <sup>[Python is here]</sup></li>
-      <li>Do not use CoffeeScript <code>class</code>-es.</li>
+    <h1>Lessons learned: Technical shit</h1>
+    <ul class="lefty">
+      <li>Say NO to <strong>old browsers</strong>.</li>
+      <li>Watch out for <strong>CoffeeScript</strong> <sup><em>[Python is here]</em></sup>.</li>
       <li>Tripple test Rails 3.1 <strong>assets compression</strong>.</li>
+      <li>Tempting to <strong>overtest</strong>.</li>
     </ul>
+    <img alt="Scratching head" src="assets/head-scratch.jpg" class="righty" />
   </div>
 
   <div class="slide">
     <h1>Existing problems</h1>
-    <ul>
-      <li>Compiling Rails assets is <strong>very slow</strong>. 
-        Please contribute to <a href="https://github.com/guard/guard-rails-assets">guard-rails-assets</a> (spork?).
-      </li>
+    <ul class="lefty">
       <li>
-        Still <strong>single page</strong> tests. <strong>Clean up properly</strong>.</li>
-      <li>Compiled specs are in <strong>source control</strong>.</li>
-      <li>Guard should run to <strong>compile CoffeeScript</strong> specs.</li>
+        <a href="https://github.com/guard/guard-rails-assets">guard-rails-assets</a> is <strong> slow</strong>.
+        PLZ Contribute (spork?).
+      </li>
+      <li><strong>Single page</strong> tests. <strong>Clean up properly</strong>.</li>
+      <li>Compiled specs in <strong>source control</strong>.</li>
+      <li>Guard to <strong>compile CoffeeScript</strong> specs.</li>
     </ul>
-  </div>
-
-
-  <div class="slide">
-    <h1>Challenges</h1>
-    <ul>
-      <li>Gotchas of the <strong>CoffeeScript</strong>.</li>
-      <li>Understand the <strong>Jasmine</strong>'s matchers, spies etc.</li>
-      <li><strong>Structure</strong> files properly and be <strong>consistent</strong>.</li>
-      <li>Tempting to <strong>overtest</strong>.</li>
-    </ul>
+    
+    <img alt="Still problems" src="assets/problem.gif" class="righty" />
   </div>
 
 
   <div class="slide">
     <h1>Summary</h1>
-    <ul>
-      <li>Got <strong>confidence</strong> in the project.</li>
-      <li>Enabled <strong>fast feedback</strong> and <strong>BDD</strong>-style of development.</li>
-      <li>Spent <strong>significantly more</strong> time though.</li>
+    <ul class="lefty">
+      <li>More <strong>confidence</strong> in the project.</li>
+      <li>Enabled <strong>fast feedback</strong>.</li>
+      <li>Spent <strong>significantly more</strong> time.</li>
       <li>Still <strong>finding my way</strong> of testing things.</li>
     </ul>
+    <img alt="Summary" src="assets/summary.jpg" class="righty" />
   </div>
 
   <div class="slide">
@@ -584,6 +537,7 @@ respond mostRecentAjaxRequest()
     <h1>Thanks!</h1>
     <a href="http://www.ApproachE.com">
       <img src="assets/me.jpg" alt="Photo of Dmytrii Nagirniak" />
+      <img alt="Sweat-out" src="assets/phew.jpg" />
     </a>
     <ul class="righty">
       <li><a href="http://twitter.com/dnagir">@dnagir</a></li>
@@ -591,6 +545,7 @@ respond mostRecentAjaxRequest()
       <li><a href="http://github.com/dnagir">github.com/dnagir</a></li>
       <li>The rest is at <a href="http://www.ApproachE.com">ApproachE.com</a></li>
     </ul>
+    
     <p>
       This presentation is available at 
       <br />

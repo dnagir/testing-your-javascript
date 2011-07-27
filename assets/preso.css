@@ -1,3 +1,5 @@
 .lefty { float: left;}
 .righty { float: right;}
 .clear { clear: both;}
+
+.slide img { padding: 0.33em; }
