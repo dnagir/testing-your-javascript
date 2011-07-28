@@ -475,6 +475,18 @@ respond = (req) -&gt;
 respond mostRecentAjaxRequest()
     </code></pre>
   </div>
+
+
+
+
+  <div class="slide">
+    <h1>Example - expectations on functions</h1>
+    <pre><code class='coffee'>it &#39;should not vote when clicking like button twice&#39;, -&gt;
+  spyOn(liker, &#39;vote&#39;)
+  $(&#39;.button-like&#39;).click().click().click()
+  expect(liker.vote.calls.length).toEqual 1
+    </code></pre>
+  </div>
   
   
   <div class="slide">
